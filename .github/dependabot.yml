@@ -1,0 +1,39 @@
+# Dependabot config for mcp-server-template.
+# Weekly version updates Monday 06:00 America/Chicago.
+# Security updates run daily by default once enabled at the repo/org level.
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    groups:
+      python-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+      python-dev:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "docker"

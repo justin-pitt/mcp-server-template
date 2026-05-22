@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+echo "Running ruff..."
+poetry run ruff check src tests
+echo "Running mypy..."
+poetry run mypy src
+echo "Running source-level contract checks..."
+poetry run python scripts/check_pydantic_inputs.py src
+poetry run python scripts/check_no_print.py src
+poetry run python scripts/check_jwt_allowlist.py
+echo "Running pytest..."
+poetry run pytest -q
+echo "All pre-push checks passed."
